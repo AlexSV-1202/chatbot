@@ -11,7 +11,6 @@ try:
     API_KEY = os.getenv("GROQ_API_KEY")  #para Groq; usar "OPENAI_API_KEY" si es OpenAI
 except:
     API_KEY = st.secrets["GROQ_API_KEY"]
-
 os.environ["GROQ_API_KEY"] = API_KEY
 client = Groq()  # Cliente para invocar la API de Groq
 
