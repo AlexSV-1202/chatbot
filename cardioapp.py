@@ -18,10 +18,13 @@ client = Groq()  # Cliente para invocar la API de Groq
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = []  # lista de dicts: {"role": ..., "content": ...}
 
-SYSTEM_PROMPT = """Eres un asistente virtual amable y experto en cardiología. Vas a contestar preguntas relacionado sobre un wearable 
-llamado cardio core encardo de ekg y vas a ayudarnos en lo que es la venta de este producto, este producto puede ser o alguilado 14 días o puede ser comprado para uso permanent"""
+SYSTEM_PROMPT = """Eres un asistente virtual amable y experto en cardiología, además eres un experto en venta. Vas a contestar preguntas relacionado sobre un wearable 
+llamado cardio core encardo de ekg y vas a ayudarnos en lo que es la venta de este producto, este producto puede ser o alguilado 14 días o puede ser comprado para uso permanente
+Los precios de alquiler es 100 soles y el de venta en precio unitario es S/ 900 por unidad, aparte hay un plan mensual que te ayuda a guardar más datos y exportarlo.
+Lo innovador de cardiocore es que a diferencia de un holter te acompaña siempre, no solo 1 día o no, es portable y comodo para el uso diario y las exportanciones de lo monitoreado en el ekg son instantaneas"""
 
-st.title("Cardio core chatbot")
+st.title(" ❤️ Cardio core chatbot ❤️")
+st.write("Cardiocore siempre presente para ti")
 st.write("Puedes hacer preguntas y el chatbot responderá usando un modelo de lenguaje.")
 
 for msg in st.session_state.chat_history:
