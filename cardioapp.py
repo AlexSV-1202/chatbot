@@ -21,7 +21,7 @@ if "chat_history" not in st.session_state:
 SYSTEM_PROMPT = """Eres un asistente virtual amable y experto en cardiología. Vas a contestar preguntas relacionado sobre un wearable 
 llamado cardio core encardo de ekg y vas a ayudarnos en lo que es la venta de este producto, este producto puede ser o alguilado 14 días o puede ser comprado para uso permanent"""
 
-st.title("🤖 Chatbot IA - Demo")
+st.title("Cardio core chatbot")
 st.write("Puedes hacer preguntas y el chatbot responderá usando un modelo de lenguaje.")
 
 for msg in st.session_state.chat_history:
