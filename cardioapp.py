@@ -5,6 +5,43 @@ from dotenv import load_dotenv
 
 st.set_page_config(page_title="Chatbot con IA", page_icon="💬", layout="centered")
 
+# Agregar al inicio del script, después de st.set_page_config
+st.markdown("""
+<style>
+    .main-header {
+        font-size: 2.5rem !important;
+        color: #e63946 !important;
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+    .cardio-subtitle {
+        font-size: 1.2rem;
+        color: #457b9d;
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+    .user-message {
+        background-color: #f1faee;
+        padding: 12px;
+        border-radius: 10px;
+        border-left: 4px solid #e63946;
+    }
+    .assistant-message {
+        background-color: #a8dadc;
+        padding: 12px;
+        border-radius: 10px;
+        border-left: 4px solid #1d3557;
+    }
+    .price-highlight {
+        background-color: #ffd166;
+        padding: 8px 12px;
+        border-radius: 8px;
+        font-weight: bold;
+        color: #333;
+    }
+</style>
+""", unsafe_allow_html=True)
+
 # Cargar la API key de forma segura
 try:
     load_dotenv()  # Carga variables desde .env si existe (entorno local)
@@ -18,11 +55,25 @@ client = Groq()  # Cliente para invocar la API de Groq
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = []  # lista de dicts: {"role": ..., "content": ...}
 
-SYSTEM_PROMPT = """Eres un asistente virtual amable y experto en cardiología, además eres un experto en venta. Vas a contestar preguntas relacionado sobre un wearable 
-llamado cardio core encardo de ekg y vas a ayudarnos en lo que es la venta de este producto, este producto puede ser o alguilado 14 días o puede ser comprado para uso permanente
-Los precios de alquiler es 100 soles y el de venta en precio unitario es S/ 900 por unidad, aparte hay un plan mensual que te ayuda a guardar más datos y exportarlo.
-Lo innovador de cardiocore es que a diferencia de un holter te acompaña siempre, no solo 1 día o no, es portable y comodo para el uso diario y las exportanciones de lo monitoreado en el ekg son instantaneas
-Si es que quieren comprar diles que se comuniquen con cardiocore@gmail.com. La empresa actualmente trabaja solo en Lima"""
+SYSTEM_PROMPT = """Eres CardioCore Assistant, un especialista en cardiología y ventas con experiencia en wearables médicos. 
+Tu enfoque principal es el dispositivo CardioCore, un monitor cardíaco portátil de ECG.
+
+**INFORMACIÓN DEL PRODUCTO:**
+- **Dispositivo:** CardioCore - Monitor ECG portátil
+- **Opción Alquiler:** 14 días por S/ 100 (ideal para evaluación)
+- **Opción Compra:** S/ 900 por unidad (uso permanente)
+- **Plan Mensual Premium:** Almacenamiento extendido y exportaciones avanzadas
+- **Ventajas clave:** Portátil, monitoreo continuo (no limitado a 24h), cómodo para uso diario, exportaciones instantáneas
+- **Contacto:** cardiocore@gmail.com (solo Lima)
+
+**DIRECTIVAS DE COMUNICACIÓN:**
+1. Sé empático, profesional y entusiasta sobre la salud cardíaca
+2. Destaca las ventajas vs. holters tradicionales
+3. Cuando mencionen precios, usa formato claro: "S/ 900" o "S/ 100"
+4. Ofrece el contacto email naturalmente cuando haya interés de compra
+5. Explica beneficios en términos de salud y conveniencia
+
+**RESPONDE EN ESPAÑOL** y mantén un tono cálido pero profesional."""
 
 st.title(" ❤️ Cardio core chatbot ❤️")
 st.write("Cardiocore siempre presente para ti")
@@ -32,7 +83,7 @@ for msg in st.session_state.chat_history:
     with st.chat_message(msg["role"]):
         st.markdown(msg["content"])
 
-user_input = st.chat_input("Escribe tu pregunta aquí...")
+user_input = st.chat_input("💬 Escribe tu pregunta sobre CardioCore")
 
 if user_input:
     # Mostrar el mensaje del usuario
@@ -63,3 +114,15 @@ if user_input:
 
     # Guardar en historial
     st.session_state.chat_history.append({"role": "assistant", "content": respuesta_texto})
+
+st.markdown("---")
+footer_col1, footer_col2, footer_col3 = st.columns(3)
+with footer_col1:
+    st.markdown("**❤️ CardioCore**")
+    st.markdown("Tu salud cardíaca, nuestra prioridad")
+with footer_col2:
+    st.markdown("**🛡️ Certificaciones**")
+    st.markdown("Dispositivo médico certificado")
+with footer_col3:
+    st.markdown("**📞 Soporte**")
+    st.markdown("cardiocore@gmail.com")
