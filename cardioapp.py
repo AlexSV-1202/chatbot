@@ -120,9 +120,7 @@ footer_col1, footer_col2, footer_col3 = st.columns(3)
 with footer_col1:
     st.markdown("**❤️ CardioCore**")
     st.markdown("Tu salud cardíaca, nuestra prioridad")
-with footer_col2:
-    st.markdown("**🛡️ Certificaciones**")
-    st.markdown("Dispositivo médico certificado")
+
 with footer_col3:
     st.markdown("**📞 Soporte**")
     st.markdown("cardiocore@gmail.com")
