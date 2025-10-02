@@ -77,7 +77,6 @@ Tu enfoque principal es el dispositivo CardioCore, un monitor cardíaco portáti
 
 st.title(" ❤️ Cardio core chatbot ❤️")
 st.write("Cardiocore siempre presente para ti")
-st.write("Puedes hacer preguntas y el chatbot responderá usando un modelo de lenguaje.")
 
 for msg in st.session_state.chat_history:
     with st.chat_message(msg["role"]):
